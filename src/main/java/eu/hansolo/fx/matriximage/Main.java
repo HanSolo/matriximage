@@ -53,18 +53,36 @@ public class Main extends Application {
     private long           lastTimerCall;
     private AnimationTimer timer;
 
+
     @Override public void init() {
         matrix = DotMatrixBuilder.create()
-                                 .colsAndRows(87, 65)
-                                 .prefSize(400, 300)
+                                 // -- Bird Demo ------
+                                 //.colsAndRows(87, 65)
+                                 //.prefSize(400, 300)
+                                 //.dotOnColor(Color.CYAN)
+                                 // -------------------
+                                 // -- Han Solo Demo --
+                                 .colsAndRows(100, 85)
+                                 .prefSize(353, 300)
+                                 .dotOnColor(Color.RED)
+                                 // -------------------
                                  .dotShape(DotShape.SQUARE)
-                                 .dotOnColor(Color.CYAN)
                                  .build();
-        src = new Image(Main.class.getResourceAsStream("meise.jpg"), 800, 600, true, false);
-        dst = new WritableImage(800, 600);
+        // Bird Demo
+        //src = new Image(Main.class.getResourceAsStream("meise.jpg"), 800, 600, true, false);
+        //dst = new WritableImage(800, 600);
+
+        // Han Solo Demo
+        src = new Image(Main.class.getResourceAsStream("han-solo-with-blaster.jpg"), 1408, 1198, true, false);
+        dst = new WritableImage(1408, 1198);
 
         imageView = new ImageView(src);
-        imageView.setFitWidth(400);
+        // Bird Demo
+        //imageView.setFitWidth(400);
+        //imageView.setFitHeight(300);
+
+        // Han Solo Demo
+        imageView.setFitWidth(353);
         imageView.setFitHeight(300);
 
         pixelate();
@@ -73,10 +91,10 @@ public class Main extends Application {
         timer = new AnimationTimer() {
             @Override public void handle(final long now) {
                 if (now > lastTimerCall + 10_000_000) {
-                    //matrix.shiftLeft();
+                    matrix.shiftLeft();
                     //matrix.shiftRight();
                     //matrix.shiftUp();
-                    matrix.shiftDown();
+                    //matrix.shiftDown();
                     lastTimerCall = now;
                 }
             }
@@ -108,7 +126,11 @@ public class Main extends Application {
 
         int width      = (int) src.getWidth();
         int height     = (int) src.getHeight();
-        int kernelSize = 4;
+        // Bird Demo
+        // int kernelSize = 4;
+
+        // Han Solo Demo
+        int kernelSize = 6;
 
         for (int y = kernelSize; y < height - kernelSize * 2; y += kernelSize * 2 + 1) {
             for (int x = kernelSize; x < width - kernelSize * 2; x += kernelSize * 2 + 1) {
@@ -141,15 +163,32 @@ public class Main extends Application {
                 matrix.setPixel(x / kernelWidth, y / kernelHeight, pixelateColor);
             }
         }
-        matrix.setCharAtWithBackground('D', 0, 5);
-        matrix.setCharAtWithBackground('o', 10, 5);
-        matrix.setCharAtWithBackground('t', 20, 5);
-        matrix.setCharAtWithBackground('M', 30, 5);
-        matrix.setCharAtWithBackground('a', 40, 5);
-        matrix.setCharAtWithBackground('t', 50, 5);
-        matrix.setCharAtWithBackground('r', 60, 5);
-        matrix.setCharAtWithBackground('i', 70, 5);
-        matrix.setCharAtWithBackground('x', 80, 5);
+        addText();
+    }
+
+    private void addText() {
+        // Bird Demo
+        //matrix.setCharAtWithBackground('@', 0, 5);
+        //matrix.setCharAtWithBackground('h', 10, 5);
+        //matrix.setCharAtWithBackground('a', 20, 5);
+        //matrix.setCharAtWithBackground('n', 30, 5);
+        //matrix.setCharAtWithBackground('s', 40, 5);
+        //matrix.setCharAtWithBackground('o', 50, 5);
+        //matrix.setCharAtWithBackground('l', 60, 5);
+        //matrix.setCharAtWithBackground('o', 70, 5);
+        //matrix.setCharAtWithBackground('_', 80, 5);
+
+
+        // Han Solo Demo
+        matrix.setCharAtWithBackground('@', 5, 75);
+        matrix.setCharAtWithBackground('h', 15, 75);
+        matrix.setCharAtWithBackground('a', 25, 75);
+        matrix.setCharAtWithBackground('n', 35, 75);
+        matrix.setCharAtWithBackground('s', 45, 75);
+        matrix.setCharAtWithBackground('o', 55, 75);
+        matrix.setCharAtWithBackground('l', 65, 75);
+        matrix.setCharAtWithBackground('o', 75, 75);
+        matrix.setCharAtWithBackground('_', 85, 75);
     }
 
     public static void main(String[] args) {
