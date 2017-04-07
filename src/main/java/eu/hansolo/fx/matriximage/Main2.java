@@ -45,6 +45,8 @@ import java.util.Arrays;
  * Created by hansolo on 07.04.17.
  */
 public class Main2 extends Application {
+    private static int     COLS = 100;
+    private static int     ROWS = 85;
     private DotMatrix      matrix;
     private DotMatrix      greenMatrix;
     private DotMatrix      redMatrix;
@@ -56,20 +58,20 @@ public class Main2 extends Application {
 
     @Override public void init() {
         matrix = DotMatrixBuilder.create()
-                                 .colsAndRows(200, 85)
+                                 .colsAndRows(2 * COLS, ROWS)
                                  .prefSize(706, 300)
                                  .dotOnColor(Color.RED)
                                  .dotShape(DotShape.SQUARE)
                                  .build();
 
         greenMatrix = DotMatrixBuilder.create()
-                                     .colsAndRows(100, 85)
+                                     .colsAndRows(COLS, ROWS)
                                      .prefSize(353, 300)
                                      .dotOnColor(Color.RED)
                                      .build();
 
         redMatrix = DotMatrixBuilder.create()
-                                    .colsAndRows(100, 85)
+                                    .colsAndRows(COLS, ROWS)
                                     .prefSize(353, 300)
                                     .dotOnColor(Color.LIME)
                                     .build();
@@ -83,10 +85,10 @@ public class Main2 extends Application {
         addTextAt(greenMatrix, 5, 5);
         addTextAt(redMatrix, 5, 75);
 
-        for (int y = 0 ; y < 85 ; y++) {
-            for (int x = 0 ; x < 100 ; x++) {
+        for (int y = 0 ; y < ROWS ; y++) {
+            for (int x = 0 ; x < COLS ; x++) {
                 matrix.setPixel(x, y, greenMatrix.getMatrix()[x][y]);
-                matrix.setPixel(x + 100, y, redMatrix.getMatrix()[x][y]);
+                matrix.setPixel(x + COLS, y, redMatrix.getMatrix()[x][y]);
             }
         }
 
