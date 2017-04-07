@@ -45,8 +45,10 @@ import java.util.Arrays;
  * Created by hansolo on 07.04.17.
  */
 public class Main2 extends Application {
-    private static int     COLS = 100;
-    private static int     ROWS = 85;
+    private static int     COLS   = 100;
+    private static int     ROWS   = 85;
+    private static double  WIDTH  = 353;
+    private static double  HEIGHT = 300;
     private DotMatrix      matrix;
     private DotMatrix      greenMatrix;
     private DotMatrix      redMatrix;
@@ -59,20 +61,20 @@ public class Main2 extends Application {
     @Override public void init() {
         matrix = DotMatrixBuilder.create()
                                  .colsAndRows(2 * COLS, ROWS)
-                                 .prefSize(706, 300)
+                                 .prefSize(2 * WIDTH, HEIGHT)
                                  .dotOnColor(Color.RED)
                                  .dotShape(DotShape.SQUARE)
                                  .build();
 
         greenMatrix = DotMatrixBuilder.create()
                                      .colsAndRows(COLS, ROWS)
-                                     .prefSize(353, 300)
+                                     .prefSize(WIDTH, HEIGHT)
                                      .dotOnColor(Color.RED)
                                      .build();
 
         redMatrix = DotMatrixBuilder.create()
                                     .colsAndRows(COLS, ROWS)
-                                    .prefSize(353, 300)
+                                    .prefSize(WIDTH, HEIGHT)
                                     .dotOnColor(Color.LIME)
                                     .build();
 
