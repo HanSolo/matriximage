@@ -89,8 +89,8 @@ public class Main2 extends Application {
 
         for (int y = 0 ; y < ROWS ; y++) {
             for (int x = 0 ; x < COLS ; x++) {
-                matrix.setPixel(x, y, greenMatrix.getMatrix()[x][y]);
-                matrix.setPixel(x + COLS, y, redMatrix.getMatrix()[x][y]);
+                matrix.setPixel(x, y, greenMatrix.getColorValueAt(x, y));
+                matrix.setPixel(x + COLS, y, redMatrix.getColorValueAt(x, y));
             }
         }
 
