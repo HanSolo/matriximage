@@ -66,14 +66,12 @@ public class Main2 extends Application {
                                      .colsAndRows(100, 85)
                                      .prefSize(353, 300)
                                      .dotOnColor(Color.RED)
-                                     .dotShape(DotShape.SQUARE)
                                      .build();
 
         redMatrix = DotMatrixBuilder.create()
                                     .colsAndRows(100, 85)
                                     .prefSize(353, 300)
                                     .dotOnColor(Color.LIME)
-                                    .dotShape(DotShape.SQUARE)
                                     .build();
 
         src = new Image(Main.class.getResourceAsStream("han-solo-with-blaster.jpg"), 1408, 1198, true, false);
@@ -82,13 +80,13 @@ public class Main2 extends Application {
         pixelate(greenMatrix, false, true, false);
         pixelate(redMatrix, true, false, false);
 
-        addTextAt(greenMatrix, 5, 75);
+        addTextAt(greenMatrix, 5, 5);
         addTextAt(redMatrix, 5, 75);
 
         for (int y = 0 ; y < 85 ; y++) {
             for (int x = 0 ; x < 100 ; x++) {
-                matrix.getMatrix()[x][y]      = greenMatrix.getMatrix()[x][y];
-                matrix.getMatrix()[x + 100][y] = redMatrix.getMatrix()[x][y];
+                matrix.setPixel(x, y, greenMatrix.getMatrix()[x][y]);
+                matrix.setPixel(x + 100, y, redMatrix.getMatrix()[x][y]);
             }
         }
 
